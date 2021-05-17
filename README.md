@@ -17,7 +17,7 @@ In particular:
 
 ```hcl
 module "foo" {
-  source = "git@github.com:edgelaboratories/terraform-modules//postgresql/db?ref=v0.1.0"
+  source = "git@github.com:edgelaboratories/terraform-postgresql-db?ref=v0.1.0"
 
   database       = "foo"
   owner          = "admin"
