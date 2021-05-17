@@ -3,7 +3,8 @@ variable "database" {
 }
 
 variable "schemas" {
-  default = ["public"]
+  description = "The schemas to create"
+  default     = ["public"]
 }
 
 variable "owner" {
@@ -33,7 +34,7 @@ variable "connection_limit" {
 
 variable "lc_collate" {
   default     = "en_US.UTF-8"
-  description = "controls the sort order"
+  description = "Controls the sort order"
 }
 
 variable "lc_ctype" {
