@@ -15,10 +15,7 @@ resource "postgresql_database" "this" {
   name  = var.database
   owner = postgresql_role.owner.name
 
-  # CREATE DATABASE uses template1 by default, but the Terraform provider uses template0.
-  # In RDS, the owner of the schema 'public' is 'postgres' in template1, so we can manage owner of tables
-  # but 'rdsadmin' in template0 so we don't have all the permissions.
-  template = "template1"
+  template = var.template
 
   lc_collate = var.lc_collate
   lc_ctype   = coalesce(var.lc_ctype, var.lc_collate)
