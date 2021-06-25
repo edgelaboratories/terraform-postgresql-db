@@ -2,6 +2,13 @@ variable "database" {
   description = "The name of the database"
 }
 
+variable "template" {
+  # CREATE DATABASE uses template1 by default, but the Terraform provider uses template0.
+  # In RDS, the owner of the schema 'public' is 'postgres' in template1, so we can manage owner of tables
+  # but 'rdsadmin' in template0 so we don't have all the permissions.
+  default = "template1"
+}
+
 variable "schemas" {
   description = "The schemas to create"
   default     = ["public"]
