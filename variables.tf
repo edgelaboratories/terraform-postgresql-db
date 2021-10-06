@@ -48,3 +48,15 @@ variable "lc_ctype" {
   default = null
   type    = string
 }
+
+variable "vault_backend_path" {
+  default = ""
+}
+
+variable "vault_db_connection_name" {
+  default = ""
+}
+
+variable "vault_role_default_ttl" {
+  default = 3600
+}
