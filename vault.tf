@@ -1,8 +1,8 @@
 locals {
   vault_roles = var.vault_backend_path == "" ? {} : {
-    "${postgresql_database.this.name}-owner" = postgresql_role.owner.name
-    "${postgresql_database.this.name}-ro"    = postgresql_role.read_only.name
-    "${postgresql_database.this.name}-rw"    = postgresql_role.read_write.name
+    "${postgresql_database.this.name}"    = postgresql_role.owner.name
+    "${postgresql_database.this.name}-ro" = postgresql_role.read_only.name
+    "${postgresql_database.this.name}-rw" = postgresql_role.read_write.name
   }
 }
 
@@ -10,7 +10,7 @@ resource "vault_database_secret_backend_role" "owner" {
   for_each = local.vault_roles
 
   backend = var.vault_backend_path
-  name    = each.value
+  name    = each.key
   db_name = var.vault_db_connection_name
 
   creation_statements = concat([
@@ -41,6 +41,6 @@ data "vault_policy_document" "this" {
 resource "vault_policy" "this" {
   for_each = local.vault_roles
 
-  name   = "postgresql-${each.key}"
+  name   = "postgresql/${each.key}"
   policy = data.vault_policy_document.this[each.key].hcl
 }
