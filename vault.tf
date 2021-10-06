@@ -41,6 +41,6 @@ data "vault_policy_document" "this" {
 resource "vault_policy" "this" {
   for_each = local.vault_roles
 
-  name   = "postgresql/${each.key}"
+  name   = "${var.vault_backend_path}/${each.key}"
   policy = data.vault_policy_document.this[each.key].hcl
 }
