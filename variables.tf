@@ -15,7 +15,8 @@ variable "schemas" {
 }
 
 variable "owner" {
-  description = "The name of the owner of the database"
+  description = "The name of the owner of the database, default to database name"
+  default     = ""
 }
 
 variable "owner_password" {

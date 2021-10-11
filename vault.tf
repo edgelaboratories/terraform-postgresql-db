@@ -1,6 +1,6 @@
 locals {
   vault_roles = var.vault_backend_path == "" ? {} : {
-    "${postgresql_database.this.name}"    = postgresql_role.owner.name
+    "${postgresql_role.owner.name}"       = postgresql_role.owner.name
     "${postgresql_database.this.name}-ro" = postgresql_role.read_only.name
     "${postgresql_database.this.name}-rw" = postgresql_role.read_write.name
   }
