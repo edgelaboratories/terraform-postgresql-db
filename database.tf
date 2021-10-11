@@ -1,7 +1,16 @@
+resource "random_password" "owner" {
+  length  = 32
+  special = false
+}
+
+locals {
+  owner_password = length(var.owner_password) > 0 ? var.owner_password : random_password.owner.result
+}
+
 resource "postgresql_role" "owner" {
   name     = var.owner
   login    = true
-  password = var.owner_password
+  password = local.owner_password
   roles    = var.roles
 
   connection_limit = var.connection_limit

@@ -20,6 +20,8 @@ variable "owner" {
 
 variable "owner_password" {
   description = "The password for the owner of the database"
+  type        = string
+  default     = null
 }
 
 variable "roles" {

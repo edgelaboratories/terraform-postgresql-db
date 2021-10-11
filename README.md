@@ -19,17 +19,20 @@ In particular:
   - `${vault_backend_path}/${DB_NAME}_ro`, that obtains credentials for the `${DB_NAME}_ro` role;
   - `${vault_backend_path}/${DB_NAME}_rw`, that obtains credentials for the `${DB_NAME}_rw` role.
 
+- When the intent is to use Vault, it's recommended to **NOT** provide the `owner_password` and let the module generate one for us.
+
 
 ## Usage
 
 ```hcl
 module "foo" {
-  source = "git@github.com:edgelaboratories/terraform-postgresql-db?ref=v0.3.1"
+  source = "git@github.com:edgelaboratories/terraform-postgresql-db?ref=v0.4.0"
 
   database       = "foo"
   owner          = "admin"
-  owner_password = "admin"
+  owner_password = "admin"  # Optional when using Vault
 
+  # Optional
   vault_backend_path       = "postgresql/elmer"
   vault_db_connection_name = "elmer"
 }
