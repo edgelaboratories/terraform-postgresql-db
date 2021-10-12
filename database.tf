@@ -1,6 +1,6 @@
 resource "postgresql_role" "owner" {
-  name     = var.owner
-  login    = true
+  name     = coalesce(var.owner, var.database)
+  login    = var.owner_password != null ? true : false
   password = var.owner_password
   roles    = var.roles
 

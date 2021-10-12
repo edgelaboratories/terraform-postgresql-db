@@ -15,11 +15,14 @@ variable "schemas" {
 }
 
 variable "owner" {
-  description = "The name of the owner of the database"
+  description = "The name of the owner of the database, defaults to database name"
+  default     = ""
 }
 
 variable "owner_password" {
   description = "The password for the owner of the database"
+  type        = string
+  default     = null
 }
 
 variable "roles" {
