@@ -36,6 +36,11 @@ data "vault_policy_document" "this" {
     path         = "${var.vault_backend_path}/creds/${each.key}"
     capabilities = ["read"]
   }
+
+  rule {
+    path         = "${var.vault_backend_path}/roles/${each.key}"
+    capabilities = ["read"]
+  }
 }
 
 resource "vault_policy" "this" {
