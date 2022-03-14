@@ -14,10 +14,10 @@ resource "vault_database_secret_backend_role" "owner" {
   db_name = var.vault_db_connection_name
 
   creation_statements = concat([
-    "CREATE ROLE \"{{name}}\" IN ROLE ${each.value} LOGIN PASSWORD '{{password}}' INHERIT VALID UNTIL '{{expiration}}';",
+    "CREATE ROLE \"{{name}}\" IN ROLE \"${each.value}\" LOGIN PASSWORD '{{password}}' INHERIT VALID UNTIL '{{expiration}}';",
 
     # Automatically SET ROLE to db owner at login
-    "ALTER ROLE \"{{name}}\" IN DATABASE ${postgresql_database.this.name} SET ROLE ${each.value}",
+    "ALTER ROLE \"{{name}}\" IN DATABASE \"${postgresql_database.this.name}\" SET ROLE \"${each.value}\";",
   ])
 
   renew_statements = [
