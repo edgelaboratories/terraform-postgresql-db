@@ -3,10 +3,12 @@ locals {
 }
 
 resource "postgresql_role" "owner" {
-  name     = local.owner
-  login    = var.owner_password != null ? true : false
-  password = var.owner_password
-  roles    = var.roles
+  name            = local.owner
+  login           = var.owner_password != null ? true : false
+  create_database = var.owner_create_database != null ? true : false
+  create_role     = var.owner_create_role != null ? true : false
+  password        = var.owner_password
+  roles           = var.roles
 
   connection_limit = var.connection_limit
 
