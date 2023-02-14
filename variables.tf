@@ -19,6 +19,16 @@ variable "owner" {
   default     = ""
 }
 
+variable "owner_create_database" {
+  description = "Defines a role's ability to execute `CREATE DATABASE`"
+  default     = false
+}
+
+variable "owner_create_role" {
+  description = "Defines a role's ability to execute `CREATE ROLE`. A role with this privilege can also alter and drop other roles."
+  default     = false
+}
+
 variable "owner_password" {
   description = "The password for the owner of the database"
   type        = string
