@@ -33,6 +33,8 @@ resource "postgresql_extension" "this" {
   name     = element(var.extensions, count.index)
   database = postgresql_database.this.name
 
+  create_cascade = var.create_cascade
+
   # On destroy, force the deletion of the extension even if things not managed by Terraform depend on it.
   # This can happen if a database and/or a schema has been created using
   # Terraform, but tables depending on features of an extension were created

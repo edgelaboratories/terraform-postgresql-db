@@ -47,6 +47,11 @@ variable "extensions" {
   default     = []
 }
 
+variable "create_cascade" {
+  type    = bool
+  default = true
+}
+
 variable "connection_limit" {
   default     = -1
   description = "Maximum number of connections for the owner role"
