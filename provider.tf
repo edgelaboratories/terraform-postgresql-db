@@ -5,7 +5,7 @@ terraform {
     }
 
     vault = {
-      source = "cyrilgdn/vault"
+      source = "hashicorp/vault"
     }
   }
 }
