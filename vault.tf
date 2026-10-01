@@ -17,7 +17,7 @@ resource "vault_database_secret_backend_role" "owner" {
     "CREATE ROLE \"{{name}}\" IN ROLE \"${each.value}\" LOGIN PASSWORD '{{password}}' INHERIT VALID UNTIL '{{expiration}}';",
 
     # Mitigation against CVE-2018-1058
-    "ALTER ROLE \"{{name}}\" SET search_path = \"\$user\";",
+    "ALTER ROLE \"{{name}}\" SET search_path = \"$user\";",
 
     # Automatically SET ROLE to db owner at login
     "ALTER ROLE \"{{name}}\" IN DATABASE \"${postgresql_database.this.name}\" SET ROLE \"${each.value}\";",
